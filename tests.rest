@@ -1,0 +1,28 @@
+http://localhost:8080
+GET /users/
+
+http://localhost:8080
+POST /users/
+{
+  "email": "mborkowski@test.com",
+  "firstName": "Michał",
+  "lastName": "Borkowski",
+  "password": "psst",
+  "role": "STUDENT"
+}
+
+http://localhost:8080
+GET /users/4
+
+http://localhost:8080
+GET /activities/
+
+http://localhost:8080
+POST /activities/
+{
+  "name": "zajęcia dodatkowe",
+  "startDate": 1507588400000
+}
+
+http://localhost:8080
+GET /activities/4
