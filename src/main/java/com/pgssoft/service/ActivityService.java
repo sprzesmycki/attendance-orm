@@ -1,16 +1,17 @@
 package com.pgssoft.service;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
+
 import com.pgssoft.exception.BadRequestException;
 import com.pgssoft.exception.NotFoundException;
 import com.pgssoft.model.Activity;
-import com.pgssoft.model.User;
 import com.pgssoft.repository.ActivitiesRepository;
 import com.pgssoft.repository.UsersRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by jpiecuch on 2017-02-13.

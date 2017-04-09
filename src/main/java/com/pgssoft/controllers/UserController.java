@@ -1,18 +1,17 @@
 package com.pgssoft.controllers;
 
+import com.pgssoft.dto.UserActivityDto;
 import com.pgssoft.dto.UserDto;
 import com.pgssoft.model.User;
 import com.pgssoft.service.UserService;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static com.pgssoft.controllers.converter.Converter.fromUserDto;
 import static com.pgssoft.controllers.converter.Converter.toUserDto;
 
@@ -47,8 +46,8 @@ public class UserController {
   }
 
   @GetMapping(path = "/")
-  public List<UserDto> get() {
-    return userService.getStudents().stream().map(user -> toUserDto(user)).collect(Collectors.toList());
+  public List<UserDto> get(@RequestParam(required = false) String expand) {
+    return userService.getStudents().stream().map(user -> toUserDto(user, expand != null)).collect(Collectors.toList());
   }
 
   @PutMapping(path = "/{id}")
@@ -59,5 +58,10 @@ public class UserController {
   @DeleteMapping(path = "/{id}")
   public void delete(@PathVariable(name = "id") long id) throws Exception {
     userService.deleteStudent(id);
+  }
+
+  @PostMapping(path = "/{userId}/activites")
+  public Long addUserActivity(@PathVariable(name = "userId") Long userId, @RequestBody @Valid UserActivityDto activity) throws Exception {
+    return userService.addUserActivity(userId, activity.getActivityId(), activity.getPresent());
   }
 }

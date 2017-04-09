@@ -21,6 +21,8 @@ public class UserDto implements Serializable {
 
     private String password;
 
+    private List<UserActivityDto> activities = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -67,5 +69,13 @@ public class UserDto implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<UserActivityDto> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<UserActivityDto> activities) {
+        this.activities = activities;
     }
 }

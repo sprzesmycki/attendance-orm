@@ -21,6 +21,8 @@ public class Activity implements Serializable {
     @NotNull
     private Date startDate;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "activity")
+    private List<UserActivity> userActivities = new ArrayList<>();
 
     public Long getId() {
         return id;
