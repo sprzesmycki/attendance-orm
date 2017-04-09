@@ -1,7 +1,6 @@
 package com.pgssoft.IT;
 
 import com.pgssoft.dto.ActivityDto;
-import com.pgssoft.dto.UserActivityDto;
 import com.pgssoft.dto.UserDto;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
@@ -50,25 +49,6 @@ public class ManagingActivityIT extends AbstractITTest {
         Long savedID = saveResponse.getBody();
         assertCreated(expected, savedID, restTemplate.getForEntity(ACTIVITIES_URL, ActivityDto[].class));
         return savedID;
-    }
-
-    @Test
-    public void addingUserActivity() {
-        String url = String.format("/users/%d/activites", USER_ID);
-        UserActivityDto dto = new UserActivityDto();
-        dto.setActivityId(ACTIVITY_ID);
-        dto.setPresent(Boolean.TRUE);
-
-        Long response = restTemplate.postForObject(url, dto, Long.class);
-        assertThat(response).isNotNull();
-
-        UserDto[] users = restTemplate.getForObject("/users/?expand=true", UserDto[].class);
-        assertThat(users).isNotNull().areExactly(1, allOf(
-                conditionOf("User's id matches", user -> USER_ID.equals(user.getId())),
-                conditionOf("Activity id matches", user -> user.getActivities().stream().filter(activity -> {
-                    return Boolean.TRUE.equals(activity.getPresent()) && activity.getActivityId().equals(ACTIVITY_ID);
-                }).count() == 1)
-        ));
     }
 
     private void assertCreated(ActivityDto expected, Long savedID, ResponseEntity<ActivityDto[]> items) {
