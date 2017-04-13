@@ -87,4 +87,22 @@ public class UserService {
 
         return userActivity.getId();
     }
+
+    public void setUserActivity(Long userId, Long activityId, Boolean present) throws NotFoundException {
+      User user = repository.findOne(userId);
+      if (user == null) {
+        throw new NotFoundException("User not found");
+      }
+
+      Activity activity = activitiesRepository.findOne(activityId);
+      if(activity == null) {
+        throw new NotFoundException("Activity not found");
+      }
+
+      UserActivity userActivity = userActivityRepository.findByUserAndActivity(user, activity)
+        .stream().findFirst().orElseThrow(() -> new NotFoundException("Activity not found"));
+
+      userActivity.setPresent(present);
+      userActivityRepository.save(userActivity);
+    }
 }

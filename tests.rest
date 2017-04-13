@@ -2,6 +2,9 @@ http://localhost:8080
 GET /users/
 
 http://localhost:8080
+GET /users/?expand=yes
+
+http://localhost:8080
 POST /users/
 {
   "email": "mborkowski@test.com",
@@ -24,5 +27,13 @@ POST /activities/
   "startDate": 1507588400000
 }
 
+# doesn't work
 http://localhost:8080
 GET /activities/4
+
+http://localhost:8080
+POST /users/4/activities/
+{
+  "activityId": 2,
+  "present": true
+}

@@ -60,8 +60,13 @@ public class UserController {
     userService.deleteStudent(id);
   }
 
-  @PostMapping(path = "/{userId}/activites")
+  @PostMapping(path = "/{userId}/activites/")
   public Long addUserActivity(@PathVariable(name = "userId") Long userId, @RequestBody @Valid UserActivityDto activity) throws Exception {
     return userService.addUserActivity(userId, activity.getActivityId(), activity.getPresent());
+  }
+
+  @PutMapping(path = "/{userId}/activites/{activityId}")
+  public Long addUserActivity(@PathVariable(name = "userId") Long userId, @PathVariable(name = "activityId") Long activityId, @RequestBody UserActivityDto userActivity) throws Exception {
+    return userService.addUserActivity(userId, activityId, userActivity.getPresent());
   }
 }
