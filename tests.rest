@@ -37,3 +37,9 @@ POST /users/4/activities/
   "activityId": 2,
   "present": true
 }
+
+http://localhost:8080
+PUT /users/4/activities/2
+{
+  "present": false
+}

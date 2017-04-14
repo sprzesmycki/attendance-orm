@@ -2,13 +2,16 @@ package com.pgssoft.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+import javax.validation.constraints.NotNull;
+
+import javax.persistence.*;
 
 /**
  * Created by jpiecuch on 2017-02-14.
  */
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"user_id", "activity_id"}))
 @Entity
 public class UserActivity implements Serializable {
 
