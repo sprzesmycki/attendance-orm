@@ -19,7 +19,7 @@ import static com.pgssoft.controllers.converter.Converter.toUserDto;
  * Created by jpiecuch on 2017-02-13.
  */
 @RestController
-@RequestMapping(path = "/users")
+@RequestMapping(path = "/api/users")
 @CrossOrigin
 public class UserController {
 
@@ -35,6 +35,11 @@ public class UserController {
     return userService.createuser(fromUserDto(user));
   }
 
+  @GetMapping(path = "/")
+  public List<UserDto> get(@RequestParam(required = false) String expand) {
+    return userService.getStudents().stream().map(user -> toUserDto(user, expand != null)).collect(Collectors.toList());
+  }
+
   @GetMapping(path = "/{id}")
   public HttpEntity<UserDto> unique(@PathVariable(name = "id") long id) {
     User user = userService.unique(id);
@@ -43,11 +48,6 @@ public class UserController {
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-  }
-
-  @GetMapping(path = "/")
-  public List<UserDto> get(@RequestParam(required = false) String expand) {
-    return userService.getStudents().stream().map(user -> toUserDto(user, expand != null)).collect(Collectors.toList());
   }
 
   @PutMapping(path = "/{id}")
