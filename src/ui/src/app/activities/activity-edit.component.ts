@@ -33,7 +33,7 @@ export class ActivityEditComponent implements OnInit {
 
   submit() {
     this.activityFormService.saveForm(this.id, this.editForm).subscribe(r => {
-      this.router.navigate(['/activities']);
+      this.router.navigate(['/activity']);
     });
   }
 

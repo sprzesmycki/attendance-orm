@@ -4,7 +4,7 @@ import { ApiService } from "../api/api.service";
 @Injectable()
 export class ActivitiesService {
 
-  private _basePath = 'activities';
+  private _basePath = 'activities/';
 
   constructor(private apiService : ApiService) { }
 
@@ -13,7 +13,7 @@ export class ActivitiesService {
   }
 
   unique(id : number) {
-    return this.apiService.get(this._basePath + '/' + id);
+    return this.apiService.get(this._basePath + id);
   }
 
   create(activity : any) {
@@ -21,11 +21,11 @@ export class ActivitiesService {
   }
 
   update(id : number, activity : any) {
-    return this.apiService.put(this._basePath + '/' + id, activity);
+    return this.apiService.put(this._basePath + id, activity);
   }
 
   delete(id: number) {
-    return this.apiService.delete(this._basePath + '/' + id);
+    return this.apiService.delete(this._basePath + id);
   }
 
 }

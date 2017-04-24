@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { DatepickerModule } from "ng2-bootstrap";
 
 import { AppComponent } from './app.component';
 import {UsersListComponent} from "./users-list/users-list.component";
@@ -30,7 +31,8 @@ import {routing} from './app.routes';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing
+    routing,
+    DatepickerModule.forRoot()
   ],
   providers: [ApiService, UsersService, UserFormService, ActivitiesService, ActivityFormService],
   bootstrap: [AppComponent]

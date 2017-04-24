@@ -9,7 +9,7 @@ import {ActivityEditComponent} from "./activities/activity-edit.component";
 export const routes: Routes = [
   {path: 'useradd', component: UserEditComponent},
   {path: 'user/:id', component: UserComponent},
-  {path: 'activityadd', component: UserEditComponent},
+  {path: 'activityadd', component: ActivityEditComponent},
   {path: 'activity/:id', component: ActivityEditComponent},
   {path: 'activity', component: ActivitiesListComponent},
   //{path: 'attendance', component: UserEditComponent},
