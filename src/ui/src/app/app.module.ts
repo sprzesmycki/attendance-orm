@@ -9,6 +9,10 @@ import {UserComponent} from "./user/user.component";
 import {UsersService} from "./users/users-service.service";
 import {UserFormService} from "./users/user-form.service";
 import {UserEditComponent} from "./user-edit/user-edit.component";
+import {ActivitiesService} from "./activities/activities.service";
+import {ActivityFormService} from "./activities/activity-form.service";
+import {ActivitiesListComponent} from "./activities/activities-list.component";
+import {ActivityEditComponent} from "./activities/activity-edit.component";
 import {ApiService} from './api/api.service';
 import {routing} from './app.routes';
 
@@ -17,7 +21,9 @@ import {routing} from './app.routes';
   AppComponent,
   UserComponent,
   UserEditComponent,
-  UsersListComponent
+  UsersListComponent,
+  ActivityEditComponent,
+  ActivitiesListComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,7 @@ import {routing} from './app.routes';
     HttpModule,
     routing
   ],
-  providers: [ApiService, UsersService, UserFormService],
+  providers: [ApiService, UsersService, UserFormService, ActivitiesService, ActivityFormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
