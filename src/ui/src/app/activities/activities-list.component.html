@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12 text-center"><h3>Lista zajęć</h3></div>
+  <div class="col-md-6 col-md-offset-3 margin-bottom">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Szukaj..." [(ngModel)]="query">
+      <span class="input-group-btn">
+        <button class="btn btn-default btn-narrow" type="button"><i class="icon icon-search"></i></button>
+      </span>
+    </div>
+  </div>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nazwa</th>
+      <th>Data</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let activity of activities | filterArray:query; let i = index">
+      <td>{{i + 1}}</td>
+      <td *ngIf="activity_edit !== activity.id">{{activity.name}}</td><td *ngIf="activity_edit === activity.id"><input type="text" class="form-control" id="exampleInputName" placeholder="Nazwa" [(ngModel)]="activity.name" value="{{activity.name}}"></td>
+      <td *ngIf="activity_edit !== activity.id">{{activity.startDate | date}}</td><td *ngIf="activity_edit === activity.id"><input type="text" class="form-control" id="exampleInputDate" placeholder="Data rozpoczęcia" [(ngModel)]="activity.startDate" value="{{activity.startDate}}"></td>
+      <td><button *ngIf="activity_edit !== activity.id" class="icon icon-edit" (click)="edit(activity.id)"></button><button *ngIf="activity_edit === activity.id" class="icon icon-accept" (click)="accept(activity.id, i)"></button></td>
+      <td><button *ngIf="activity_edit !== activity.id" class="icon icon-trash" (click)="remove(activity.id)"></button><button *ngIf="activity_edit === activity.id" class="icon icon-cancel" (click)="cancel(activity.id)"></button></td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-default center-block" (click)="addActivity()">Dodaj zajęcia</button>
