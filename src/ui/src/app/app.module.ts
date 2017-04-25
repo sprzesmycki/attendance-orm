@@ -16,6 +16,7 @@ import {ActivitiesListComponent} from "./activities/activities-list.component";
 import {ActivityEditComponent} from "./activities/activity-edit.component";
 import {ApiService} from './api/api.service';
 import {routing} from './app.routes';
+import { AttendanceComponent } from './attendance/attendance.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {routing} from './app.routes';
   UserEditComponent,
   UsersListComponent,
   ActivityEditComponent,
-  ActivitiesListComponent
+  ActivitiesListComponent,
+  AttendanceComponent
   ],
   imports: [
     BrowserModule,
