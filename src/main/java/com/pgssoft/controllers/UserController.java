@@ -66,7 +66,7 @@ public class UserController {
   }
 
   @PutMapping(path = "/{userId}/activities/{activityId}")
-  public void addUserActivity(@PathVariable(name = "userId") Long userId, @PathVariable(name = "activityId") Long activityId, @RequestBody UserActivityDto userActivity) throws Exception {
+  public void setUserActivity(@PathVariable(name = "userId") Long userId, @PathVariable(name = "activityId") Long activityId, @RequestBody UserActivityDto userActivity) throws Exception {
     userService.setUserActivity(userId, activityId, userActivity.getPresent());
   }
 }

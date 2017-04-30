@@ -1,11 +1,11 @@
 http://localhost:8080
-GET /users/
+GET /api/users/
 
 http://localhost:8080
-GET /users/?expand=yes
+GET /api/users/?expand=yes
 
 http://localhost:8080
-POST /users/
+POST /api/users/
 {
   "email": "mborkowski@test.com",
   "firstName": "Michał",
@@ -15,13 +15,13 @@ POST /users/
 }
 
 http://localhost:8080
-GET /users/4
+GET /api/users/4
 
 http://localhost:8080
-GET /activities/
+GET /api/activities/
 
 http://localhost:8080
-POST /activities/
+POST /api/activities/
 {
   "name": "zajęcia dodatkowe",
   "startDate": 1507588400000
@@ -29,17 +29,17 @@ POST /activities/
 
 # doesn't work
 http://localhost:8080
-GET /activities/4
+GET /api/activities/4
 
 http://localhost:8080
-POST /users/4/activities/
+POST /api/users/4/activities/
 {
   "activityId": 2,
   "present": true
 }
 
 http://localhost:8080
-PUT /users/4/activities/2
+PUT /api/users/4/activities/2
 {
   "present": false
 }

@@ -78,11 +78,9 @@ public class UserService {
             throw new NotFoundException("Activity not found");
         }
 
-        UserActivity userActivity = new UserActivity();
-        userActivity.setUser(user);
-        userActivity.setActivity(activity);
-        userActivity.setPresent(present);
+        UserActivity userActivity = getUserActivity(user, activity);
 
+        userActivity.setPresent(present);
         userActivity = userActivityRepository.save(userActivity);
 
         return userActivity.getId();
@@ -99,10 +97,21 @@ public class UserService {
         throw new NotFoundException("Activity not found");
       }
 
-      UserActivity userActivity = userActivityRepository.findByUserAndActivity(user, activity)
-        .stream().findFirst().orElseThrow(() -> new NotFoundException("Activity not found"));
+      UserActivity userActivity = getUserActivity(user, activity);
 
       userActivity.setPresent(present);
       userActivityRepository.save(userActivity);
+    }
+
+    private UserActivity getUserActivity(User user, Activity activity) {
+      UserActivity userActivity = userActivityRepository.findByUserAndActivity(user, activity)
+        .stream().findFirst().orElseGet(() -> {
+          UserActivity created = new UserActivity();
+          created.setUser(user);
+          created.setActivity(activity);
+          return created;
+        });
+
+      return userActivity;
     }
 }

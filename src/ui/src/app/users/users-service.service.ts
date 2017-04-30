@@ -34,7 +34,7 @@ export class UsersService {
   }
 
   updateActivity(id : number, activity : any) {
-    return this.apiService.put(this._basePath + id + '/' + this._activities_path + '/' + activity.id, activity);
+    return this.apiService.put(this._basePath + id + '/' + this._activities_path + activity.activityId, activity);
   }
 
 }
