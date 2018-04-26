@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * Created by jpiecuch on 2017-02-13.
  */
 @RestController
-@RequestMapping(path = "/activities")
+@RequestMapping(path = "/api/activities")
 @CrossOrigin
 public class ActivityController {
 

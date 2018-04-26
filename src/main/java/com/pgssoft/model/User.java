@@ -3,8 +3,11 @@ package com.pgssoft.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.management.relation.Role;
 
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -24,11 +27,15 @@ public class User implements Serializable {
     @NotNull
     private String lastName;
     @NotNull
+    @NotEmpty
+    @Column(name="email", unique=true)
     private String email;
     @NotNull
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
+    private List<UserActivity> userActivities = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -76,5 +83,13 @@ public class User implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<UserActivity> getUserActivities() {
+        return userActivities;
+    }
+
+    public void setUserActivities(List<UserActivity> userActivities) {
+        this.userActivities = userActivities;
     }
 }

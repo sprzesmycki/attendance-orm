@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-12 text-center"><h3>Lista zajęć</h3></div>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nazwa</th>
+      <th>Data</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let activity of activities; let i = index">
+      <td>{{i + 1}}</td>
+      <td *ngIf="activity_edit !== activity.id">{{activity.name}}</td><td *ngIf="activity_edit === activity.id"><input type="text" class="form-control" id="exampleInputName" placeholder="Nazwa" [(ngModel)]="activity.name" value="{{activity.name}}"></td>
+      <td *ngIf="activity_edit !== activity.id">{{activity.startDate | date}}</td><td *ngIf="activity_edit === activity.id"><input type="text" class="form-control" id="exampleInputDate" placeholder="Data rozpoczęcia" [(ngModel)]="activity.startDate" value="{{activity.startDate}}"></td>
+      <td><button *ngIf="activity_edit !== activity.id" class="glyphicon glyphicon-edit" (click)="edit(activity.id)"></button><button *ngIf="activity_edit === activity.id" class="glyphicon glyphicon-ok" (click)="accept(activity.id, i)"></button></td>
+      <td><button *ngIf="activity_edit !== activity.id" class="glyphicon glyphicon-trash" (click)="remove(activity.id)"></button><button *ngIf="activity_edit === activity.id" class="glyphicon glyphicon-remove" (click)="cancel(activity.id)"></button></td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-default center-block" (click)="addActivity()">Dodaj zajęcia</button>

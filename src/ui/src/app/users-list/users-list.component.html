@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12 text-center"><h3>Lista studentów</h3></div>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <td>{{i + 1}}</td>
+      <td *ngIf="user_edit !== user.id">{{user.firstName}}</td><td *ngIf="user_edit === user.id"><input type="text" class="form-control" id="exampleInputFirstName" placeholder="Imię" [(ngModel)]="user.firstName" value="{{user.firstName}}"></td>
+      <td *ngIf="user_edit !== user.id">{{user.lastName}}</td><td *ngIf="user_edit === user.id"><input type="text" class="form-control" id="exampleInputLastName" placeholder="Nazwisko" [(ngModel)]="user.lastName" value="{{user.lastName}}"></td>
+      <td *ngIf="user_edit !== user.id">{{user.email}}</td><td *ngIf="user_edit === user.id"><input type="email" class="form-control" id="exampleInputEmail" placeholder="Email" [(ngModel)]="user.email" value="{{user.email}}"></td>
+      <td><button *ngIf="user_edit !== user.id" class="glyphicon glyphicon-edit" (click)="edit(user.id)"></button><button *ngIf="user_edit === user.id" class="glyphicon glyphicon-ok" (click)="accept(user.id, i)"></button></td>
+      <td><button *ngIf="user_edit !== user.id" class="glyphicon glyphicon-trash" (click)="remove(user.id)"></button><button *ngIf="user_edit === user.id" class="glyphicon glyphicon-remove" (click)="cancel(user.id)"></button></td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-default center-block" (click)="addStudent()">Dodaj studenta</button>

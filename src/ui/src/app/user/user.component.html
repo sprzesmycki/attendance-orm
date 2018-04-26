@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-2">
+    <div class="col">Imię</div>
+    <div class="col">Nazwisko</div>
+    <div class="col">Email</div>
+  </div>
+
+  <div class="col-xs-2">
+    <div class="col">{{user.firstName}}</div>
+    <div class="col">{{user.lastName}}</div>
+    <div class="col">{{user.email}}</div>
+  </div>
+</div>
+<div class="alert"  [ngClass]="{'alert-success' : activity.present === true, 'alert-danger' : activity.present === false, 'alert-warning' : activity.present === null}" role="alert" *ngFor="let activity of user.activities">
+  {{activity.name}} {{activity.startDate | date:'shortDate'}}
+  <div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-success">
+      <input type="radio" name="options" id="option2" autocomplete="off" (click)="updateActivity(true, activity)"> Byłem
+    </label>
+    <label class="btn btn-danger">
+      <input type="radio" name="options" id="option3" autocomplete="off" (click)="updateActivity(false, activity)"> Nie byłem
+    </label>
+  </div>
+</div>
